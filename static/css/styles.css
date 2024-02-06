@@ -1,0 +1,28 @@
+.nav-bar nav{
+    background-color: black;
+    padding: 1rem;
+}
+
+.nav-bar ul{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav-bar a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.nav-bar a:visited{
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+}

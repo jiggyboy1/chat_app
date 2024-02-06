@@ -1,0 +1,40 @@
+{% extends 'partial/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row ">
+       <div class="col-2">
+            <h1>Topics</h1>
+            {% for room in room%}
+                <p><Strong>{{room.name}}</Strong></p>
+            {% endfor%}
+       </div>
+        <div class="col">
+            <h1>Groups</h1>
+            <div class="row">
+                {% for room in room%}
+                <div class="col-12 col-lg-6">
+                   {{room.name}} <br>
+                   <small>@{{room.host}}</small> <br>
+
+                   <hr>
+                </div>
+                {% endfor %}
+                <!-- <div class="col-12 col-lg-6">
+                   <hr>
+                </div>
+                <div class="col-12 col-lg-6">
+                   <hr>
+                </div> -->
+
+                
+            </div> 
+       </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock %}
