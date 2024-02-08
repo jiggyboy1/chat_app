@@ -1,5 +1,5 @@
 .nav-bar nav{
-    background-color: black;
+    /* background-color: black; */
     padding: 1rem;
 }
 
@@ -22,7 +22,35 @@
 }
 
 .nav-bar a:visited{
-    color: pink;
+    /* color: pink; */
     background-color: transparent;
     text-decoration: none;
+}
+
+.body{
+    background-color: #26425a;
+    color: white;
+    /* margin: 5px; */
+}
+
+h5 a{
+    text-decoration: none;
+    
+}
+h5 a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.createroom{
+    padding: 10px;
+    /* margin: 0; */
+    /* border: 1px solid black; */
+}
+
+.delete_room{
+    justify-content: center;
+    /* align-items: center; */
+    display: flex;
+    padding: 40px;
 }

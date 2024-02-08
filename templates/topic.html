@@ -1,23 +1,25 @@
 {% extends 'partial/main.html' %}
 {% load static %}
 {% block content %}
-<br>
+
+
+
+
 <div class="container-fluid">
     <div class="row ">
        <div class="col-3">
           <div class="topic">
               <h1 >Topics</h1>
               <hr>
-              {% for topic in topic%}
                   <p><Strong><a href="{% url 'topic' topic.name%}">{{topic.name}}</a></Strong></p>
-              {% endfor%}
+              
           </div>
        </div>
         <div class="col">
             <h1>Groups</h1>
-            <p><a href="{% url 'create' %}  " target="_blank" title="Create Your Very Own Room">Create Your Own Group</a></p>
+            <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
             <div class="row">
-                {% for room in room%}
+                {% for room in rooms%}
                 <div class="col-12 col-lg-6 ">
                   <div class="card">
                      <div class="card-body">
@@ -40,6 +42,9 @@
         
     </div>
 </div>
+
+
+
 
 
 

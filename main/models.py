@@ -19,7 +19,7 @@ class Room(models.Model):
     update = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f'{self.name} {self.topic}'
+        return f'{self.description[0:70]}'
     
 class Message(models.Model):
     host = models.ForeignKey(User,on_delete=models.CASCADE)

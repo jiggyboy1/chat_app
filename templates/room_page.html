@@ -1,0 +1,35 @@
+{% extends 'partial/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="rooms">
+                <h3> {{rooms.name}} </h3>
+                <small>Hosted by @{{rooms.host}}</small> <br>
+                <small>Topic {{rooms.topic}}</small> <br>
+                <small>Created at {{rooms.created|timesince}}</small> <br>
+                <a href="{% url 'delete' rooms.id %}" class="btn btn-danger">Delete</a>
+                <hr>
+                <p>{{rooms.description}}</p>
+            </div>
+            <div>
+                <h2>Conversation</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-2">
+            hi
+        </div>
+    </div>
+ 
+
+</div>
+
+
+
+
+
+{% endblock %}
