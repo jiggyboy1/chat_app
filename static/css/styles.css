@@ -54,3 +54,32 @@ h5 a:hover{
     display: flex;
     padding: 40px;
 }
+
+.login-container{
+    /* border: 1px solid #e1cbd7; */
+    justify-content: center;
+    margin: 40px;
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    /* background-color: blue; */
+    
+   
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    padding: 70px; 
+    background-color: rgb(125, 125,125);
+    color: black;
+    /* text-align: center; */
+    /* width: 400px; */
+
+}
+
+.login .form-text{
+    color: white;
+}

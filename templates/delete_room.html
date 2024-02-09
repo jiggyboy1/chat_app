@@ -6,7 +6,7 @@
 <div class="delete_room">
     <form action="" method="post">
         {% csrf_token %}
-        <p>You sure you want to delete this room...... if sure press "{{obj}}"</p>
+        <p>You sure you want to delete this room "{{obj.name}}"</p>
 
         <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go Back</a>
         <input type="submit" value="confirm" class="btn btn-danger">

@@ -9,4 +9,6 @@ urlpatterns =[
     path('delete/<str:pk>/',views.delete_room,name="delete"),
     path('update/<str:pk>/',views.update,name="update"),
     path('topic/<str:foo>/',views.topic,name="topic"),
+    path('login/',views.login_user,name="login"),
+    path('logout/',views.logout_user,name="logout"),
 ]

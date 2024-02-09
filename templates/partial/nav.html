@@ -10,9 +10,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">login</a>
+              <a class="nav-link" href="{% url 'logout' %}">logout</a>
             </li>
+            {%else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">login</a>
+            </li>
+            {% endif %}
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-primary" type="submit">Search</button>
