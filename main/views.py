@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models  import Room,Topic
 from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -17,6 +18,7 @@ def room(request,pk):
     context = {'rooms': rooms}
     return render(request,'room_page.html',context)
 
+@login_required(login_url='login')
 def create_room(request):
     form = CreateRoom()
     if request.method == 'POST':
@@ -37,6 +39,7 @@ def delete_room(request,pk):
         return redirect('home')
     return render(request,'delete_room.html',{'obj':room_delete})
 
+@login_required(login_url='login')
 def update(request,pk):
     room = Room.objects.get(id=pk)
     form = CreateRoom(instance=room)
