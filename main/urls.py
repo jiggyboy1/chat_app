@@ -10,5 +10,6 @@ urlpatterns =[
     path('update/<str:pk>/',views.update,name="update"),
     path('topic/<str:foo>/',views.topic,name="topic"),
     path('login/',views.login_user,name="login"),
+    path('sign-up/',views.sign_up,name="register"),
     path('logout/',views.logout_user,name="logout"),
 ]

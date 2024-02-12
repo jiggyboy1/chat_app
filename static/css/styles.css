@@ -83,3 +83,20 @@ h5 a:hover{
 .login .form-text{
     color: white;
 }
+
+.register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    padding: 50px; 
+    background-color: #86a8cf;
+    color: black;
+    /* margin: 400px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* text-align: center; */
+    /* width: 400px; */
+}

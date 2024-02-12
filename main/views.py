@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models  import Room,Topic
-from .forms import CreateRoom
+from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
 
 
@@ -25,6 +25,7 @@ def create_room(request):
             forms =form.save(commit=False)
             forms.host = request.user
             forms.save()
+            return redirect('home')
 
     context = {'form':form}
     return render(request,'create.html',context)
@@ -68,6 +69,17 @@ def login_user(request):
 
     context = {}
     return render(request,'login.html',context)
+
+def sign_up(request):
+    form = Registeruser()
+    if request.method == 'POST':
+        form = Registeruser(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            return redirect('home')
+    context = {'form':form}
+    return render(request,'sign_up.html',context)
 
 
 def logout_user(request):
