@@ -5,18 +5,38 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <div class="rooms">
-                <h3> {{rooms.name}} </h3>
-                <small>Hosted by @{{rooms.host}}</small> <br>
-                <small>Topic {{rooms.topic}}</small> <br>
-                <small>Created at {{rooms.created|timesince}}</small> <br>
-                <a href="{% url 'delete' rooms.id %}" class="btn btn-danger">Delete</a>
-                <hr>
-                <p>{{rooms.description}}</p>
-            </div>
-            <div>
-                <h2>Conversation</h2>
-                <hr>
+            <div class="page-layout">
+                <div class="rooms">
+                    <h3> {{rooms.name}} </h3>
+                    <small>Hosted by @{{rooms.host}}</small> <br>
+                    <small>Topic {{rooms.topic}}</small> <br>
+                    <small>Created at {{rooms.created|timesince}}</small> <br>
+                    <a href="{% url 'delete' rooms.id %}" class="btn btn-danger">Delete</a>
+                    <hr>
+                    <p>{{rooms.description}}</p>
+                </div>
+                <div>
+                    <h2>Conversation</h2>
+                    <hr>
+                    {% for message in message %}
+
+                    <div class="review ">
+                        <small><a href="#">@{{message.host}} </a>{{message.created|timesince}}</small>
+
+                        
+                        <p>{{message.body}}</p>
+                        <hr>
+                    </div>
+
+                    {% endfor %}
+
+                    <div class="messange-form">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="text"  class="form-control" name="message" placeholder="Typing...."  >
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 

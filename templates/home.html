@@ -24,7 +24,11 @@
                         <small>Host: @{{room.host}}</small> <br>
                         <h5 class="card-title"><a href="{% url 'room' room.id %}">{{room.name}}</a> </h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Topic: {{room.topic}}</h6>
+                        {% if request.user == room.host%}
                         <p><a href="{% url 'delete' room.id %}" class="btn btn-danger">Delete</a>   <a href="{% url 'update' room.id %}" class="btn btn-primary">update</a></p>
+                        {% else%}
+                        <p><a href="{% url 'room' room.id %}" class="btn btn-primary">View room</a></p>
+                        {% endif%}
                         <p class="card-text">{{room}}</p>
                      </div>
                      

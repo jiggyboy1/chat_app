@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models  import Room,Topic
+from .models  import Room,Topic,Message
 from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -15,7 +15,15 @@ def home(request):
 
 def room(request,pk):
     rooms = Room.objects.get(id=pk)
-    context = {'rooms': rooms}
+    message = rooms.message_set.all().order_by('-created')
+    if request.method == 'POST':
+        message1 = Message.objects.create(
+            host = request.user,
+            body = request.POST.get('message'),
+            room = rooms,
+        )
+        return redirect('room',pk=rooms.id)
+    context = {'rooms': rooms, 'message':message}
     return render(request,'room_page.html',context)
 
 @login_required(login_url='login')
