@@ -21,6 +21,7 @@
                     {% for message in message %}
 
                     <div class="review ">
+                        <a href="{% url 'delete_message' message.id %}">Delete</a>
                         <small><a href="#">@{{message.host}} </a>{{message.created|timesince}}</small>
 
                         
@@ -41,7 +42,16 @@
         </div>
 
         <div class="col-2">
-            hi
+            <div class="paticipant">
+                <h2>paticipants</h2>
+                <hr>
+                {% for user in paticipants %}
+
+                <div>
+                    <p>@{{user.username}}</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
  

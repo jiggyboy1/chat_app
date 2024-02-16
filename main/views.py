@@ -16,14 +16,16 @@ def home(request):
 def room(request,pk):
     rooms = Room.objects.get(id=pk)
     message = rooms.message_set.all().order_by('-created')
+    paticipants = rooms.participant.all()
     if request.method == 'POST':
         message1 = Message.objects.create(
             host = request.user,
             body = request.POST.get('message'),
             room = rooms,
         )
+        rooms.participant.add(request.user)
         return redirect('room',pk=rooms.id)
-    context = {'rooms': rooms, 'message':message}
+    context = {'rooms': rooms, 'message':message,'paticipants':paticipants}
     return render(request,'room_page.html',context)
 
 @login_required(login_url='login')
@@ -91,6 +93,14 @@ def sign_up(request):
             return redirect('home')
     context = {'form':form}
     return render(request,'sign_up.html',context)
+
+def delete_message(request,pk):
+    message = Message.objects.get(id=pk)
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+    return render(request,'delete_room.html',{'obj':message})
+    
 
 
 def logout_user(request):
