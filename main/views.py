@@ -3,7 +3,7 @@ from .models  import Room,Topic,Message
 from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,6 +17,7 @@ def room(request,pk):
     rooms = Room.objects.get(id=pk)
     message = rooms.message_set.all().order_by('-created')
     paticipants = rooms.participant.all()
+    rooom = rooms.participant.count()
     if request.method == 'POST':
         message1 = Message.objects.create(
             host = request.user,
@@ -25,7 +26,7 @@ def room(request,pk):
         )
         rooms.participant.add(request.user)
         return redirect('room',pk=rooms.id)
-    context = {'rooms': rooms, 'message':message,'paticipants':paticipants}
+    context = {'rooms': rooms, 'message':message,'paticipants':paticipants,'rooom':rooom}
     return render(request,'room_page.html',context)
 
 @login_required(login_url='login')
@@ -46,6 +47,7 @@ def delete_room(request,pk):
     room_delete = Room.objects.get(id=pk)
     if request.method == 'POST':
         room_delete.delete()
+        messages.success(request,'Deleted Succesfully')
         return redirect('home')
     return render(request,'delete_room.html',{'obj':room_delete})
 
@@ -98,6 +100,7 @@ def delete_message(request,pk):
     message = Message.objects.get(id=pk)
     if request.method == 'POST':
         message.delete()
+        messages.success(request,'Deleted Succesfully')
         return redirect('home')
     return render(request,'delete_room.html',{'obj':message})
     
@@ -105,4 +108,5 @@ def delete_message(request,pk):
 
 def logout_user(request):
     logout(request)
+    messages.success(request,'You Succesfully Logout')
     return redirect('home')

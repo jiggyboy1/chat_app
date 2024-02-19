@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-10">
             <div class="page-layout">
                 <div class="rooms">
                     <h3> {{rooms.name}} </h3>
@@ -21,7 +21,9 @@
                     {% for message in message %}
 
                     <div class="review ">
-                        <a href="{% url 'delete_message' message.id %}">Delete</a>
+                        {% if request.user == message.host %}
+                        <a href="{% url 'delete_message' message.id %}" class="btn btn-danger" >Delete</a>
+                        {% endif %}
                         <small><a href="#">@{{message.host}} </a>{{message.created|timesince}}</small>
 
                         
@@ -41,14 +43,16 @@
             </div>
         </div>
 
+
+        
         <div class="col-2">
             <div class="paticipant">
-                <h2>paticipants</h2>
+                <h2>paticipants <small>({{rooom}})</small></h2>
                 <hr>
                 {% for user in paticipants %}
 
                 <div>
-                    <p>@{{user.username}}</p>
+                    <strong>@{{user.username}}</strong>
                 </div>
                 {% endfor %}
             </div>
