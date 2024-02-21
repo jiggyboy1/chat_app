@@ -4,18 +4,20 @@ from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
     room = Room.objects.all()
     topic = Topic.objects.all()
-    context = {'room':room,'topic':topic}
+    message = Message.objects.all()
+    context = {'room':room,'topic':topic, 'message':message}
     return render(request,'home.html',context)
 
 def room(request,pk):
     rooms = Room.objects.get(id=pk)
-    message = rooms.message_set.all().order_by('-created')
+    message = rooms.message_set.all()
     paticipants = rooms.participant.all()
     rooom = rooms.participant.count()
     if request.method == 'POST':
@@ -66,8 +68,9 @@ def update(request,pk):
 def topic(request,foo):
     topics = Topic.objects.get(name=foo)
     rooms = Room.objects.filter(topic=topics)
+    message = Message.objects.all()
 
-    context = {"topic":topics,"rooms":rooms}
+    context = {"topic":topics,"rooms":rooms,'message':message}
     return render(request,'topic.html',context)
 
 def login_user(request):
@@ -104,7 +107,13 @@ def delete_message(request,pk):
         return redirect('home')
     return render(request,'delete_room.html',{'obj':message})
     
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST.get('searched')
+        topics = Room.objects.filter(Q(name__icontains=searched)| Q(description__icontains=searched)| Q(topic__name__icontains=searched))
 
+    context = {'search':searched,'topics':topics}
+    return render(request,'search.html',context)
 
 def logout_user(request):
     logout(request)

@@ -1,0 +1,17 @@
+{% extends 'partial/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="search">
+
+
+    {% for topic in topics %}
+    {{topic.name}}  --- {{topic.description}}
+        
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

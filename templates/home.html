@@ -4,7 +4,7 @@
 <br>
 <div class="container-fluid">
     <div class="row ">
-       <div class="col-3">
+       <div class="col-2">
           <div class="topic">
               <h1 >Topics</h1>
               <hr>
@@ -38,8 +38,17 @@
             </div> 
        </div>
        <div class="col-2">
-         <h1>Feeds</h1>
-         <p>hi</p>
+         <h2>Activity</h2>
+        {% for message in message%}
+         <small>@{{message.host}}    {{message.created|timesince}}</small>
+         <small>Replied to post "{{message.room.name}}"</small>
+
+         <p>{{message}}</p>
+         {% if request.user == message.host %}
+            <a href="{% url 'delete_message' message.id %}" class="btn btn-danger" >Delete</a>
+        {% endif %}
+         <hr>
+        {% endfor %}
        </div>
         
     </div>

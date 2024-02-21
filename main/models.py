@@ -18,6 +18,9 @@ class Room(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created']
+
     def __str__(self) -> str:
         return f'{self.description[0:70]}'
     
@@ -27,5 +30,9 @@ class Message(models.Model):
     body = models.TextField(max_length=200,null=True,blank=True)
     created = models.DateTimeField(auto_now_add= True)
 
+    class Meta:
+        ordering = ['-created']
+
+        
     def __str__(self) -> str:
         return f'{self.body}'
