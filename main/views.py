@@ -95,6 +95,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
+            messages.success(request,"Your Account Created Succesfully")
             return redirect('home')
     context = {'form':form}
     return render(request,'sign_up.html',context)
@@ -110,7 +111,7 @@ def delete_message(request,pk):
 def search(request):
     if request.method == 'POST':
         searched = request.POST.get('searched')
-        topics = Room.objects.filter(Q(name__icontains=searched)| Q(description__icontains=searched)| Q(topic__name__icontains=searched))
+        topics = Room.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
 
     context = {'search':searched,'topics':topics}
     return render(request,'search.html',context)

@@ -14,8 +14,10 @@
           </div>
        </div>
         <div class="col">
-            <h1>Groups</h1>
-            <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
+            <div class="Group">
+                <h1>Groups</h1>
+                <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
+            </div>
             <div class="row">
                 {% for room in room%}
                 <div class="col-12 col-lg-6 ">

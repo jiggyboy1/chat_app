@@ -32,6 +32,23 @@
     color: white;
     /* margin: 5px; */
 }
+.topic a{
+    text-decoration: none;
+}
+.topic a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.Group a{
+    text-decoration: none;
+}
+
+.Group a:hover{
+    text-decoration: underline;
+    color: blue;
+    
+}
 
 h5 a{
     text-decoration: none;

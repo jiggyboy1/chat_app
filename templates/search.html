@@ -4,12 +4,16 @@
 
 
 <div class="search">
+    {% if searched %}
+        You search for {{searched}} 
 
+        {% for topic in topics %}
+        {{topic.name}}  --- {{topic.description}}
+            
+        {% endfor %}
 
-    {% for topic in topics %}
-    {{topic.name}}  --- {{topic.description}}
-        
-    {% endfor %}
+    {% endif %}
+
 </div>
 
 
