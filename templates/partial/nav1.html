@@ -1,0 +1,20 @@
+<div class="nav-bar">
+    <nav>
+        <ul class="nav justify-content-center">
+            
+            
+            
+            <!-- <form class="d-flex" role="search" method="post" action="{% url 'search' %}">
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+              <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form> -->
+          </ul>
+    </nav>
+</div>
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}

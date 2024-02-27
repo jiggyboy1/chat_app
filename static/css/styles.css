@@ -1,19 +1,22 @@
 .nav-bar nav{
-    /* background-color: black; */
-    padding: 1rem;
+    background-color: #26425a;;
+    /* padding: 1rem; */
 }
 
-.nav-bar ul{
-    display: flex;
+/* .nav-bar ul{
+    display: block;
     list-style-type: none;
     justify-content: space-around;
     margin: 0;
     padding: 0;
-}
+} */
 
 .nav-bar a{
     text-decoration: none;
-    color: white;
+    color:white;
+}
+.nav-bar .dropdown-menu a{
+    color: black;
 }
 
 .nav-bar a:hover{
