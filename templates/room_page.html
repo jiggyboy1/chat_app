@@ -52,7 +52,9 @@
                 {% for user in paticipants %}
 
                 <div>
+                    <a href="{%url 'view_profile' user.id %}">
                     <strong>@{{user.username}}</strong>
+                    </a>
                 </div>
                 {% endfor %}
             </div>

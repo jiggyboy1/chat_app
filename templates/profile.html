@@ -1,8 +1,16 @@
 {% extends 'partial/main.html' %}
 {% load static %}
 {% block content %}
-<br><br>
-<div class="container-fluid">
+<br>
+
+
+
+     
+
+    <h1>{{user.username}}</h1>
+    <img src="{{user.profile.photo.url}}" alt="" height="175" class="rounded-circle">
+    
+    <div class="container-fluid">
     <div class="row ">
        <div class="col-3">
           <div class="topic">
@@ -19,7 +27,7 @@
                 <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
             </div>
             <div class="row">
-                {% for room in room%}
+                {% for room in rooms%}
                 <div class="col-12 col-lg-6 ">
                   <div class="card">
                      <div class="card-body">
@@ -38,25 +46,5 @@
                   </div>
                 </div>
                 {% endfor %}
-            </div> 
-       </div>
-       <div class="col-3">
-         <h2>Activity</h2>
-        {% for message in message%}
-         <small>@{{message.host}}    {{message.created|timesince}}</small>
-         <small>Replied to post "{{message.room.name}}"</small>
-
-         <p>{{message}}</p>
-         {% if request.user == message.host %}
-            <a href="{% url 'delete_message' message.id %}" class="btn btn-danger" >Delete</a>
-        {% endif %}
-         <hr>
-        {% endfor %}
-       </div>
-        
-    </div>
-</div>
-
-
 
 {% endblock %}

@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from .models  import Room,Topic,Message
+from .models  import Room,Topic,Message,Profile
 from .forms import CreateRoom,Registeruser
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -120,3 +121,10 @@ def logout_user(request):
     logout(request)
     messages.success(request,'You Succesfully Logout')
     return redirect('home')
+
+def profile(request,pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all()
+    topic = Topic.objects.all()
+    context = {'user':user,'rooms':rooms,'topic':topic,}
+    return render(request,'profile.html',context)
