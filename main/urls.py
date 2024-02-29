@@ -15,4 +15,6 @@ urlpatterns =[
     path('logout/',views.logout_user,name="logout"),
     path('search/',views.search,name="search"),
     path('profile/<str:pk>',views.profile,name="profile"),
+    path('user-profile/',views.userprofile,name="user_profile"),
+    path('edit-profile/<str:pk>/',views.editprofile,name="edit_profile"),
 ]

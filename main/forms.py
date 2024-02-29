@@ -1,6 +1,6 @@
 from typing import Any
 from django import forms
-from .models import Room
+from .models import Room,Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -32,3 +32,16 @@ class Registeruser(UserCreationForm):
         self.fields['username'].widget.attrs['class']='form-control'
         self.fields['password1'].widget.attrs['class']='form-control'
         self.fields['password2'].widget.attrs['class']='form-control'
+        
+
+class UserProfile(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','zip_code','address','photo']
+        exclude = ['user']
+    
+        widgets = {
+            'bio': forms.Textarea(attrs={'class':'form-control','placeholder':'Enter Your Bio'}),
+            'zip_code': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Zip code'}),
+            'address': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Address'}),
+        }

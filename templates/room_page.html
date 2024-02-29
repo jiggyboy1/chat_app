@@ -24,7 +24,7 @@
                         {% if request.user == message.host %}
                         <a href="{% url 'delete_message' message.id %}" class="btn btn-danger" >Delete</a>
                         {% endif %}
-                        <small><a href="#">@{{message.host}} </a>{{message.created|timesince}}</small>
+                        <small><a href="{%url 'profile' message.host.id %}">@{{message.host}} </a>{{message.created|timesince}}</small>
 
                         
                         <p>{{message.body}}</p>
@@ -52,7 +52,7 @@
                 {% for user in paticipants %}
 
                 <div>
-                    <a href="{%url 'view_profile' user.id %}">
+                    <a href="{%url 'profile' user.id %}">
                     <strong>@{{user.username}}</strong>
                     </a>
                 </div>

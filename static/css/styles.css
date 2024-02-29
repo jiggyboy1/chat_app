@@ -137,3 +137,22 @@ h5 a:hover{
     font-family: fantasy;
 }
 
+.user_profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    padding: 70px; 
+    background-color:  #86a8cf;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.head1{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

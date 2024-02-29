@@ -6,45 +6,73 @@
 
 
      
+    <div class="head1">
+        <h1>{{user.username}}</h1>
+        <img src="{{user.profile.photo.url}}" alt="" height="170" class="rounded-circle"><br>
 
-    <h1>{{user.username}}</h1>
-    <img src="{{user.profile.photo.url}}" alt="" height="175" class="rounded-circle">
+        {% if request.user == user.profile.user %}
+            {% if user.profile %}
+            <a href="{% url 'user_profile'%}">Your profile</a>
+            {% endif %}
+            <a href="{% url 'edit_profile' user.id %}">Edit profile</a>
+        {% endif %}
+    </div>
     
     <div class="container-fluid">
-    <div class="row ">
-       <div class="col-3">
-          <div class="topic">
-              <h1 >Topics</h1>
-              <hr>
-              {% for topic in topic%}
-                  <p><Strong><a href="{% url 'topic' topic.name%}">{{topic.name}}</a></Strong></p>
-              {% endfor%}
-          </div>
-       </div>
-        <div class="col-6 col-lg-6">
-            <div class="Group">
-                <h1>Groups</h1>
-                <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
-            </div>
-            <div class="row">
-                {% for room in rooms%}
-                <div class="col-12 col-lg-6 ">
-                  <div class="card">
-                     <div class="card-body">
-                        <a href="{% url 'profile' room.host.id %}">
-                        <small>Host: @{{room.host}}</small></a> <br>
-                        <h5 class="card-title"><a href="{% url 'room' room.id %}">{{room.name}}</a> </h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Topic: {{room.topic}}</h6>
-                        {% if request.user == room.host%}
-                        <p><a href="{% url 'delete' room.id %}" class="btn btn-danger">Delete</a>   <a href="{% url 'update' room.id %}" class="btn btn-primary">update</a></p>
-                        {% else%}
-                        <p><a href="{% url 'room' room.id %}" class="btn btn-primary">View room</a></p>
-                        {% endif%}
-                        <p class="card-text">{{room}}</p>
-                     </div>
-                     
-                  </div>
+        <div class="row ">
+           <div class="col-3">
+              <div class="topic">
+                  <h1 >Topics</h1>
+                  <hr>
+                  {% for topic in topic%}
+                      <p><Strong><a href="{% url 'topic' topic.name%}">{{topic.name}}</a></Strong></p>
+                  {% endfor%}
+              </div>
+           </div>
+            <div class="col-6 col-lg-6">
+                <div class="Group">
+                    <h1>Groups</h1>
+                    <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
                 </div>
-                {% endfor %}
-
-{% endblock %}
+                <div class="row">
+                    {% for room in rooms%}
+                    <div class="col-12 col-lg-6 ">
+                      <div class="card">
+                         <div class="card-body">
+                            <a href="{% url 'profile' room.host.id %}">
+                            <small>Host: @{{room.host}}</small></a> <br>
+                            <h5 class="card-title"><a href="{% url 'room' room.id %}">{{room.name}}</a> </h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Topic: {{room.topic}}</h6>
+                            {% if request.user == room.host%}
+                            <p><a href="{% url 'delete' room.id %}" class="btn btn-danger">Delete</a>   <a href="{% url 'update' room.id %}" class="btn btn-primary">update</a></p>
+                            {% else%}
+                            <p><a href="{% url 'room' room.id %}" class="btn btn-primary">View room</a></p>
+                            {% endif%}
+                            <p class="card-text">{{room}}</p>
+                         </div>
+                         
+                      </div>
+                    </div>
+                    {% endfor %}
+                </div> 
+           </div>
+           <div class="col-3">
+             <h2>Activity</h2>
+            {% for message in room_message%}
+             <small>@{{message.host}}    {{message.created|timesince}}</small>
+             <small>Replied to post "{{message.room.name}}"</small>
+    
+             <p>{{message}}</p>
+             {% if request.user == message.host %}
+                <a href="{% url 'delete_message' message.id %}" class="btn btn-danger" >Delete</a>
+            {% endif %}
+             <hr>
+            {% endfor %}
+           </div>
+            
+        </div>
+    </div>
+    
+    
+    
+    {% endblock %}

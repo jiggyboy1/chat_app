@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models  import Room,Topic,Message,Profile
-from .forms import CreateRoom,Registeruser
+from .forms import CreateRoom,Registeruser,UserProfile
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -122,9 +122,43 @@ def logout_user(request):
     messages.success(request,'You Succesfully Logout')
     return redirect('home')
 
+
 def profile(request,pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
+    room_message = user.message_set.all()
     topic = Topic.objects.all()
-    context = {'user':user,'rooms':rooms,'topic':topic,}
+    context = {'user':user,'rooms':rooms,'topic':topic,'room_message':room_message}
     return render(request,'profile.html',context)
+
+
+@login_required(login_url='login')
+def userprofile(request):
+    form = UserProfile()
+    if request.method == 'POST':
+        form = UserProfile(request.POST,request.FILES)
+        if form.is_valid():
+            forms = form.save(commit=False)
+            forms.user = request.user
+            forms.save()
+            return redirect('home')
+    context = {'form':form}
+    return render(request,'user_profile.html',context)
+
+@login_required(login_url='login')
+def editprofile(request,pk):
+    users = Profile.objects.get(id=pk)
+    if request.user != request.user:
+        messages.error(request,'You arent allowed here')
+
+    user = Profile.objects.get(id=pk)
+    form = UserProfile(instance=user)
+    if request.method == 'POST':
+        form = UserProfile(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {'form':form}
+    return render(request,'user_profile.html',context)
+    
+

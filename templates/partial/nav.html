@@ -22,17 +22,16 @@
           {% if user.is_authenticated %}
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Setting
+            {{request.user}}
             </a>
             <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+              {% if request.user == user.profile.user %}
+              <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
+              {% endif %}
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></l>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">logout</a>
             </li>
           {%else %}
             <li class="nav-item">
