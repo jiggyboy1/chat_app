@@ -19,15 +19,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
           </li>
-          {% if user.is_authenticated %}
+          {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{request.user}}
             </a>
             <ul class="dropdown-menu">
-              {% if request.user == user.profile.user %}
+              <!-- {% if request.user == user.profile.user %} -->
               <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
-              {% endif %}
+              <!-- {% endif %} -->
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></l>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>

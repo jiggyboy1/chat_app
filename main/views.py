@@ -97,7 +97,7 @@ def sign_up(request):
             user = form.save()
             login(request,user)
             messages.success(request,"Your Account Created Succesfully")
-            return redirect('home')
+            return redirect('user_profile')
     context = {'form':form}
     return render(request,'sign_up.html',context)
 
@@ -146,12 +146,8 @@ def userprofile(request):
     return render(request,'user_profile.html',context)
 
 @login_required(login_url='login')
-def editprofile(request,pk):
-    users = Profile.objects.get(id=pk)
-    if request.user != request.user:
-        messages.error(request,'You arent allowed here')
-
-    user = Profile.objects.get(id=pk)
+def editprofile(request,):
+    user = Profile.objects.get(user=request.user)
     form = UserProfile(instance=user)
     if request.method == 'POST':
         form = UserProfile(request.POST,request.FILES,instance=user)
