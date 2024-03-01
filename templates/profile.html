@@ -9,15 +9,11 @@
     <div class="head1">
         <h1>{{user.username}}</h1>
         {% if user.profile.photo %}
-        <img src="{{user.profile.photo.url}}" alt="" height="170" class="rounded-circle"><br>
+        <img src="{{user.profile.photo.url}}" alt="" height="170" class="rounded-circle"><br><br>
         {% endif %}
-
+        <em>bio : {{user.profile.bio}}</em>
         {% if request.user == user.profile.user %}
-            {% if profile %}
-            <a href="{% url 'user_profile'%}">Your profile</a>
-            {% else %}
-            <a href="{% url 'edit_profile' %}">Edit profile</a>
-            {% endif %}
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit profile</a>
         {% endif %}
     </div>
     

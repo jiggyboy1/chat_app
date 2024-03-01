@@ -82,9 +82,10 @@ def update(request,pk):
 def topic(request,foo):
     topics = Topic.objects.get(name=foo)
     rooms = Room.objects.filter(topic=topics)
+    room = rooms.count()
     message = Message.objects.all()
 
-    context = {"topic":topics,"rooms":rooms,'message':message}
+    context = {"topic":topics,"rooms":rooms,'message':message,'room':room}
     return render(request,'topic.html',context)
 
 def login_user(request):

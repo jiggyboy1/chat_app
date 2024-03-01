@@ -19,6 +19,7 @@
         <div class="col">
             <h1>Groups</h1>
             <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
+            <b>There's {{room}} rooms</b>
             <div class="row">
                 {% for room in rooms%}
                 <div class="col-12 col-lg-6 ">

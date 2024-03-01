@@ -156,3 +156,7 @@ h5 a:hover{
     align-items: center;
     text-align: center;
 }
+
+.head1 h1{
+    font-family: monospace;
+}
