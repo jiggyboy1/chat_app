@@ -11,9 +11,10 @@ from django.contrib.auth.models import User
 
 def home(request):
     room = Room.objects.all()
+    rooms = room.count()
     topic = Topic.objects.all()
     message = Message.objects.all()
-    context = {'room':room,'topic':topic, 'message':message}
+    context = {'room':room,'topic':topic, 'message':message,'rooms':rooms}
     return render(request,'home.html',context)
 
 def room(request,pk):
@@ -46,8 +47,14 @@ def create_room(request):
     context = {'form':form}
     return render(request,'create.html',context)
 
+@login_required(login_url='login')
 def delete_room(request,pk):
     room_delete = Room.objects.get(id=pk)
+
+    if request.user != room_delete.host:
+        messages.error(request,"You Are Not Allowed To Delete Someone Else Room")
+        return redirect('home')
+    
     if request.method == 'POST':
         room_delete.delete()
         messages.success(request,'Deleted Succesfully')
@@ -58,6 +65,12 @@ def delete_room(request,pk):
 def update(request,pk):
     room = Room.objects.get(id=pk)
     form = CreateRoom(instance=room)
+
+    if request.user != room.host:
+        messages.error(request,"You Are Not Allowed To Edit Someone Else Room")
+        return redirect('home')
+    
+
     if request.method == 'POST':
         form = CreateRoom(request.POST,instance=room)
         if form.is_valid():
@@ -101,8 +114,14 @@ def sign_up(request):
     context = {'form':form}
     return render(request,'sign_up.html',context)
 
+@login_required(login_url='login')
 def delete_message(request,pk):
     message = Message.objects.get(id=pk)
+
+    if request.user != message.host:
+        messages.error(request,"You Are Not Allowed To Edit Someone Else Room")
+        return redirect('home')
+    
     if request.method == 'POST':
         message.delete()
         messages.success(request,'Deleted Succesfully')
