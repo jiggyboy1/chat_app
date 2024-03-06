@@ -132,7 +132,7 @@ def delete_message(request,pk):
 def search(request):
     if request.method == 'POST':
         searched = request.POST.get('searched')
-        topics = Room.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        topics = Room.objects.filter(name__contains=searched)
 
     context = {'search':searched,'topics':topics}
     return render(request,'search.html',context)

@@ -4,15 +4,18 @@
 
 
 <div class="search">
-    {% if searched %}
-        You search for {{searched}} 
+        {% if search %}
+            <h2>You search for {{search}}</h2> 
 
-        {% for topic in topics %}
-        {{topic.name}}  --- {{topic.description}}
-            
-        {% endfor %}
+            {% for topic in topics %}
+            <b><a href="{% url 'room' topic.id %}">{{topic.name}} </a> {{topic.description}}</b>
+                
+            {% endfor %}
 
-    {% endif %}
+        {% else %}
+            <h2>You didn"t search for anything! </h2>
+        {% endif%}
+    
 
 </div>
 

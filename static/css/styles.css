@@ -168,3 +168,15 @@ h5 a:hover{
 .head1 h1{
     font-family: monospace;
 }
+
+.search {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
