@@ -52,6 +52,14 @@
     color: blue;
     
 }
+.card-body a{
+    text-decoration: none;
+    
+}
+.card-body a:hover{
+    
+    text-decoration: underline;
+}
 
 h5 a{
     text-decoration: none;
