@@ -37,11 +37,11 @@ class Registeruser(UserCreationForm):
 class UserProfile(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio','zip_code','address','photo']
+        fields = ['bio','zip_code','location','photo']
         exclude = ['user']
     
         widgets = {
             'bio': forms.Textarea(attrs={'class':'form-control','placeholder':'Enter Your Bio'}),
             'zip_code': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Zip code'}),
-            'address': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Address'}),
+            'location': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter Your Address'}),
         }

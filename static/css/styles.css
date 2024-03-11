@@ -144,6 +144,17 @@ h5 a:hover{
     text-align: center;
     font-family: fantasy;
 }
+.page-layout a {
+    text-decoration: none;
+}
+
+.paticipant a{
+    text-decoration: none;
+}
+
+.paticipant a:hover{
+    text-decoration: underline;
+}
 
 .user_profile{
     display: flex;

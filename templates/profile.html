@@ -14,6 +14,7 @@
         <img src="{% static 'media/image/download.png' %}" alt="profile" class="rounded-circle"><br>
         {% endif %}
         <em>bio : {{user.profile.bio}}</em><br>
+        <em>location : {{user.profile.location}}</em><br>
         {% if request.user == user.profile.user %}
             <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit profile</a>
         {% endif %}

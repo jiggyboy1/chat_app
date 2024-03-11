@@ -9,7 +9,7 @@
                 <div class="login">
                     <form action="" method="post">
                         {% csrf_token %}
-                        <h3>Sign into</h3>
+                        <h3>Sign Into Chat App</h3>
                         <label for="username" class="form-label">Username</label>
                         <input type="text"  class="form-control" name="username">
                         <div  class="form-text">
@@ -21,9 +21,9 @@
                         <div class="form-text">
                             Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                         </div><br>
-                        <button class="btn btn-primary" style="text-align: center;">Submit</button>
+                        <button class="btn btn-outline-primary" style="text-align: center;">Submit</button><br><br>
+                        <a href="{% url 'register' %}" class="btn btn-outline-secondary">Don't have an account</a>
                     </form>
-
                 </div>
         </div>
     </div>

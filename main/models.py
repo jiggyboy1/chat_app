@@ -28,7 +28,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='image/',blank=True,null=True)
     bio = models.CharField(blank=True,null=True,max_length=200)
-    address = models.CharField(blank=True,null=True,max_length=200)
+    location = models.CharField(blank=True,null=True,max_length=200)
     zip_code = models.CharField(blank=True,null=True,max_length=200)
 
     def __str__(self) -> str:
