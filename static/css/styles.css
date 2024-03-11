@@ -116,6 +116,16 @@ h5 a:hover{
     color: white;
 }
 
+.login a{
+    text-decoration: none;
+    
+}
+
+.login a:hover{
+    text-decoration: underline;
+    
+}
+
 .register{
     display: flex;
     justify-content: center;
@@ -131,6 +141,15 @@ h5 a:hover{
     margin-bottom: auto;
     /* text-align: center; */
     /* width: 400px; */
+}
+.register a{
+    text-decoration: none;
+    
+}
+
+.register a:hover{
+    text-decoration: underline;
+    
 }
 
 .page-layout{
