@@ -25,9 +25,11 @@
             {{request.user}}
             </a>
             <ul class="dropdown-menu">
-              <!-- {% if request.user == user.profile.user %} -->
+              {% if user.profile %}
               <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
-              <!-- {% endif %} -->
+              {% else %}
+              <li><a href="{% url 'user_profile' %}">User profile</a></li>
+              {% endif %}
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></l>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>

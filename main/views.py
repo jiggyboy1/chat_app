@@ -36,15 +36,25 @@ def room(request,pk):
 @login_required(login_url='login')
 def create_room(request):
     form = CreateRoom()
+    topics = Topic.objects.all()
     if request.method == 'POST':
-        form = CreateRoom(request.POST)
-        if form.is_valid():
-            forms =form.save(commit=False)
-            forms.host = request.user
-            forms.save()
-            return redirect('home')
+        topic_name = request.POST.get('topic')
+        topic , created = Topic.objects.get_or_create(name=topic_name)
+        
+        Room.objects.create(
+            host=request.user,
+            topic = topic,
+            name = request.POST.get('name'),
+            description =request.POST.get('description'),
+        )
+        # form = CreateRoom(request.POST)
+        # if form.is_valid():
+        #     forms =form.save(commit=False)
+        #     forms.host = request.user
+        #     forms.save()
+        return redirect('home')
 
-    context = {'form':form}
+    context = {'form':form,'topics':topics}
     return render(request,'create.html',context)
 
 @login_required(login_url='login')
@@ -64,6 +74,7 @@ def delete_room(request,pk):
 @login_required(login_url='login')
 def update(request,pk):
     room = Room.objects.get(id=pk)
+    topics = Topic.objects.all()
     form = CreateRoom(instance=room)
 
     if request.user != room.host:
@@ -72,11 +83,17 @@ def update(request,pk):
     
 
     if request.method == 'POST':
-        form = CreateRoom(request.POST,instance=room)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    context = {'form':form}
+        topic_name = request.POST.get('topic')
+        topic , created = Topic.objects.get_or_create(name=topic_name)
+        room.name= request.POST.get('name')
+        room.topic= topic
+        room.name= request.POST.get('description')
+        room.save()
+        # form = CreateRoom(request.POST,instance=room)
+        # if form.is_valid():
+        #     form.save()
+        return redirect('home')
+    context = {'form':form,'topics':topics,'room':room}
     return render(request,'create.html',context)
 
 def topic(request,foo):

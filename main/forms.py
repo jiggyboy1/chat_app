@@ -14,7 +14,7 @@ class CreateRoom(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter a name'}),
             'topic': forms.Select(attrs={'class':'form-select','placeholder':'Enter a Topic'}),
-            'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Enter a Topic'}),
+            'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Enter a Description'}),
         }
 
 class Registeruser(UserCreationForm):
