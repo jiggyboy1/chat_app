@@ -16,9 +16,9 @@
               
           </div>
        </div>
-        <div class="col">
+        <div class="col-6 col-lg-6">
             <h1>Groups</h1>
-            <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room">Create Your Own Group</a></p>
+            <p><a href="{% url 'create' %}  "  title="Create Your Very Own Room" style="text-decoration: none;">Create Your Own Group</a></p>
             <b>There's {{room}} rooms</b>
             <div class="row">
                 {% for room in rooms%}
@@ -37,7 +37,7 @@
                 {% endfor %}
             </div> 
        </div>
-       <div class="col-2">
+       <div class="col-3">
          <h1>Activity</h1>
          {% for message in message%}
          <p><small>@{{message.host}}    {{message.created|timesince}}</small></p>
