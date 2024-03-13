@@ -193,5 +193,7 @@ def editprofile(request,):
             return redirect('home')
     context = {'form':form}
     return render(request,'user_profile.html',context)
-    
+
+
+
 
